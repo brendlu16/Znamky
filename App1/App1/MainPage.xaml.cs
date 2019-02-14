@@ -28,7 +28,7 @@ namespace App1
             var radky = tableCreator.VytvoritTabulku();
             for (int i = 0; i < predmety.Count; i++)
             {
-                StackLayout radek = new StackLayout { Orientation = StackOrientation.Horizontal };
+                /*StackLayout radek = new StackLayout { Orientation = StackOrientation.Horizontal };
                 Label label = new Label { Text = predmety[i].Nazev, WidthRequest = 100 };
                 radek.Children.Add(label);
                 foreach (var item in radky[i])
@@ -36,9 +36,17 @@ namespace App1
                     Label label2 = new Label { Text = item.Hodnota.ToString(), WidthRequest = 20 };
                     radek.Children.Add(label2);
                 }
-                ViewCell cell = new ViewCell { View = radek};
+                ViewCell cell = new ViewCell { View = radek };*/
+                TextCell cell = new TextCell { Text = predmety[i].Nazev, StyleId = i.ToString() };
+                cell.Tapped += ViewCellTapped;
                 TableZnamky.Add(cell);
             }
+        }
+        public void ViewCellTapped(object sender, EventArgs e)
+        {
+            TextCell cell = (TextCell)sender;
+            Navigation.PushAsync(new Page3(int.Parse(cell.StyleId)));
+
         }
         private void Button_Clicked(object sender, EventArgs e)
         {
