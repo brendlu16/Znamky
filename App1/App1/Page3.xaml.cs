@@ -43,9 +43,16 @@ namespace App1
             
             foreach (var item in radek)
             {
-                TextCell cell2 = new TextCell { Text = item.Hodnota+" (váha: "+item.Vaha+")" };
+                TextCell cell2 = new TextCell { Text = item.Hodnota + " (váha: " + item.Vaha + ")", StyleId = item.ID.ToString() };
+                cell2.Tapped += ViewCellTapped;
                 TableZnamky.Add(cell2);
             }
         }
-	}
+        public void ViewCellTapped(object sender, EventArgs e)
+        {
+            TextCell cell = (TextCell)sender;
+            Navigation.PushAsync(new Page4(int.Parse(cell.StyleId)));
+
+        }
+    }
 }

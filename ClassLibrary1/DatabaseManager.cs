@@ -33,5 +33,14 @@ namespace ClassLibrary1
             var Predmety = db.Table<Predmet>();
             return Predmety;
         }
+        public Znamka NacistZnamku(int IDZnamky)
+        {
+            Znamka znamka = db.Get<Znamka>(IDZnamky);
+            return znamka;
+        }
+        public void SmazatZnamku(int IDZnamky)
+        {
+            db.Delete(NacistZnamku(IDZnamky));
+        }
     }
 }
